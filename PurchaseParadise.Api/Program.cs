@@ -28,4 +28,18 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+using IServiceScope scope = app.Services.CreateScope();
+IServiceProvider services = scope.ServiceProvider;
+ApplicationDbContext context = services.GetRequiredService<ApplicationDbContext>();
+ILogger<Program> logger = services.GetRequiredService<ILogger<Program>>();
+
+try
+{
+    await context.Database.MigrateAsync();
+}
+catch (Exception ex)
+{
+    logger.LogError(ex, "An error occured during the execution");
+}
+
 app.Run();
