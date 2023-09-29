@@ -1,4 +1,5 @@
-﻿using PurchaseParadise.Core.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using PurchaseParadise.Core.Models;
 using System.Text.Json;
 
 namespace PurchaseParadise.Infrastructure.Data;
