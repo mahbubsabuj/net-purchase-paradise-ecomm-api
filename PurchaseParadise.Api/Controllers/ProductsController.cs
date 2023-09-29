@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using PurchaseParadise.Core.Interfaces;
 using PurchaseParadise.Core.Models;
-using PurchaseParadise.Infrastructure.Data;
-using System.Collections.Generic;
 
 namespace PurchaseParadise.Infrastructure.Controllers;
 
@@ -12,6 +9,7 @@ namespace PurchaseParadise.Infrastructure.Controllers;
 public class ProductsController : ControllerBase
 {
     private readonly IProductRepository _repository;
+
     public ProductsController(IProductRepository repository)
     {
         _repository = repository;

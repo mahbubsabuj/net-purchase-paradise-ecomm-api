@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using PurchaseParadise.Core.Interfaces;
 using PurchaseParadise.Infrastructure.Data;
+using PurchaseParadise.Infrastructure.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ApplicationDbContext>((options) => options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IProductBrandRepository, ProductBrandRepository>();
+builder.Services.AddScoped<IProductTypeRepository, ProductTypeRepository>();
 
 var app = builder.Build();
 
@@ -36,6 +39,7 @@ ILogger<Program> logger = services.GetRequiredService<ILogger<Program>>();
 try
 {
     await context.Database.MigrateAsync();
+    await ApplicationDbContextSeed.SeedAsync(context);
 }
 catch (Exception ex)
 {
