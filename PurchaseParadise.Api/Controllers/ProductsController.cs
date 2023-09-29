@@ -8,9 +8,9 @@ namespace PurchaseParadise.Infrastructure.Controllers;
 [ApiController]
 public class ProductsController : ControllerBase
 {
-    private readonly IProductRepository _repository;
+    private readonly IGenericRepository<Product> _repository;
 
-    public ProductsController(IProductRepository repository)
+    public ProductsController(IGenericRepository<Product> repository)
     {
         _repository = repository;
     }
@@ -19,7 +19,7 @@ public class ProductsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<IReadOnlyList<Product>>> GetProducts()
     {
-        IReadOnlyList<Product> products = await _repository.GetProductsAsync();
+        IReadOnlyList<Product> products = await _repository.GetAllAsync();
         return Ok(products);
     }
 
@@ -28,7 +28,7 @@ public class ProductsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<Product>> GetProduct(int id)
     {
-        Product? product = await _repository.GetProductByIdAsync(id);
+        Product? product = await _repository.GetByIdAsync(id);
 
         if (product == null)
         {

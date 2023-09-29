@@ -4,7 +4,7 @@ using PurchaseParadise.Core.Models;
 using PurchaseParadise.Infrastructure.Data;
 using SQLitePCL;
 
-namespace PurchaseParadise.Infrastructure.Repository;
+namespace PurchaseParadise.Infrastructure.Data.Repositories;
 
 public class ProductTypeRepository : IProductTypeRepository
 {

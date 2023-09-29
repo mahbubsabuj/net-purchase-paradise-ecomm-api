@@ -3,7 +3,7 @@ using PurchaseParadise.Core.Interfaces;
 using PurchaseParadise.Core.Models;
 using PurchaseParadise.Infrastructure.Data;
 
-namespace PurchaseParadise.Infrastructure.Repository
+namespace PurchaseParadise.Infrastructure.Data.Repositories
 {
     public class ProductRepository : IProductRepository
     {

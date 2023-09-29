@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using PurchaseParadise.Core.Interfaces;
 using PurchaseParadise.Infrastructure.Data;
-using PurchaseParadise.Infrastructure.Repository;
+using PurchaseParadise.Infrastructure.Data.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +15,7 @@ builder.Services.AddDbContext<ApplicationDbContext>((options) => options.UseSqli
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductBrandRepository, ProductBrandRepository>();
 builder.Services.AddScoped<IProductTypeRepository, ProductTypeRepository>();
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
 var app = builder.Build();
 

@@ -8,9 +8,9 @@ namespace PurchaseParadise.Api.Controllers;
 [ApiController]
 public class ProductBrandsController : ControllerBase
 {
-    private readonly IProductBrandRepository _repository;
+    private readonly IGenericRepository<ProductBrand> _repository;
 
-    public ProductBrandsController(IProductBrandRepository repository)
+    public ProductBrandsController(IGenericRepository<ProductBrand> repository)
     {
         _repository = repository;
     }
@@ -19,6 +19,6 @@ public class ProductBrandsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetAllProductBrands()
     {
-        return Ok(await _repository.GetAllProductBrandsAsync());
+        return Ok(await _repository.GetAllAsync());
     }
 }
